@@ -1,30 +1,45 @@
-
-
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args) {
-      Scanner scanner=new Scanner(System.in);
-      System.out.println("ingrese la cantidad de estudiantes:");
-      int cantidad_estudiantes = scanner.nextInt();
-      
-      String[] estudiantes =new String[cantidad_estudiantes];
-        {
-            int i=0;
-            while (i<cantidad_estudiantes) {
-                i++;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Ingrese la numero de estudiantes que deseas : ");
+        int numeroEstudiantes = sc.nextInt();
+
+        int[] edades = new int[numeroEstudiantes];
+
+        int mayoresCinco = 0,  smMayoresCinco = 0, menoresCinco = 0, smMenoresCinco = 0, igualACinco = 0;
+
+        for (int i = 0; i < numeroEstudiantes; i++) {
+            System.out.print("Ingrese la edad del estudiante " + (i + 1) + ": ");
+            edades[i] = sc.nextInt();
+
+            if (edades[i] > 5) {
+                mayoresCinco++;
+                smMayoresCinco += edades[i];
+            } else if (edades[i] < 5) {
+                menoresCinco++;
+                smMenoresCinco += edades[i];
+            } else {
+                igualACinco++;
             }
         }
-        int i = 0;
-        System.out.println(" ingrese el nombre del estudiante:"+(i+1)+":");
-      estudiantes[i] = scanner.next();
-
-      System.out.println("los nombres de los estudiantes son:");
-      for(String ignored : estudiantes){
-          System.out.println(Arrays.toString(estudiantes));
-
-      }
+        if (mayoresCinco == 0) {
+            System.out.println("no se puede sacar la media de los estudiantes mayores de 5");
         }
-
+        else {
+            igualACinco = smMayoresCinco / mayoresCinco;
+            System.out.println("La media de los mayores 5 es: "+mayoresCinco);
+        }
+        if (menoresCinco == 0) {
+            System.out.println("no se puede sacar la media de los estudiantes menores de 5");
+        }
+        else {
+            igualACinco = menoresCinco / smMenoresCinco;
+            System.out.println("La media de los estudiantes menores 5 es: "+menoresCinco);
+        }
+        System.out.println("La cantidad de estudiantes que tiene exactamente 5 años es: "+igualACinco);
     }
+}
